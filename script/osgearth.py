@@ -14,7 +14,11 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     # getLibrary( "osg" ,dict_config, b_only_download )
     
     download_source(str_name,"https://github.com/gwaldron/osgearth.git")
-    configure(str_name)
+    
+    STR_CFG = " -DGDAL_INCLUDE_DIR='../../install/include/gdal'"
+    STR_CFG += " -DGDAL_LIBRARY='../../install/lib/x86/gdal111.lib'"
+    
+    configure(str_name,STR_CFG)
     build(str_name)
     install(str_name)
     
