@@ -1,12 +1,11 @@
-##依赖环境
+## 依赖环境
 
 * CMake
 * python2
 * GitPython
-~~~
-pip install GitPython
-~~~
-
+```
+  pip install GitPython
+```
 
 ##编译开关[尚未支持]
 
@@ -23,6 +22,13 @@ pip install GitPython
 
 ### Visual Studio 2017
 1. 启动控制台
-2. 输入命令 cmake-git install xxx
+
+2. 输入命令（假设编译zlib，使用vs2017编译32bit版本）
+
+```
+cmake-git.py source zlib
+cmake-git.py install zlib -arch vs2017-32 [-release] [-debug] [-dynamic] [-static]
+```
+
 3. 等待结束
 

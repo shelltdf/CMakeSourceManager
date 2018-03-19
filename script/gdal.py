@@ -4,6 +4,7 @@ from _common import *
 def getDependency( str_name ,getDependency):
     list_name = []
     
+    list_name = addDependency("libpng" , list_name,getDependency)
     list_name = addDependency("libgeotiff" , list_name,getDependency)
     list_name = addDependency("libiconv" , list_name,getDependency)
     list_name = addDependency("curl" , list_name,getDependency)
@@ -15,7 +16,9 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
     # download_source(str_name,"https://github.com/aashish24/gdal-svn.git","cmake4gdal")
     download_source(str_name,"https://github.com/shelltdf/gdal-svn.git","cmake4gdal")
-    
+    if(b_only_download):
+        return
+        
     STR_CFG = " -DGDAL_USE_OPENCL=0 "
     STR_CFG += " -DGDAL_ENABLE_FRMT_BMP=1 "
     STR_CFG += " -DGDAL_ENABLE_FRMT_DIMAP=1 "
@@ -44,8 +47,8 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     STR_CFG += " -DOGR_ENABLE_VRT=1 "
     STR_CFG += " -DOGR_ENABLE_WFS=1 "
     
-    configure(str_name,STR_CFG)
-    build(str_name)
-    install(str_name)
+    configure(str_name,dict_config,STR_CFG)
+    build(str_name,dict_config)
+    install(str_name,dict_config)
     
     

@@ -12,8 +12,11 @@ def getDependency( str_name ,getDependency):
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
     download_source(str_name,"https://github.com/glennrp/libpng.git")
-    configure(str_name)
-    build(str_name)
-    install(str_name)
+    if(b_only_download):
+        return
+        
+    configure(str_name,dict_config)
+    build(str_name,dict_config)
+    install(str_name,dict_config)
     
     

@@ -12,15 +12,20 @@ def my_exec( str_cmd ):
         ps = subprocess.Popen(str_cmd)
         ps.wait()
         
-def my_into_build_dir( str_name ):
+def my_into_build_dir( str_name , str_arch ):
     if(os.path.isdir("build")==False):
         os.system( "mkdir build" )
     os.chdir( "build" )
+    if(os.path.isdir(str_arch)==False):
+        os.system( "mkdir " + str_arch )
+    os.chdir( str_arch )
     if(os.path.isdir(str_name)==False):
         os.system( "mkdir " + str_name )
     os.chdir( str_name )
     
+    
 def my_out_build_dir( str_name ):
+    os.chdir( ".." )
     os.chdir( ".." )
     os.chdir( ".." )
     
@@ -46,35 +51,35 @@ def addDependency( str_name , list_name ,getDependency ):
     
 
 def download_source(str_name , str_git_url , str_branch='master'):
-
     e = os.path.isdir("./source/" + str_name + "/.git") 
     if(e):
         print str_name + " git is exist"
-
     else:
         print "clone git : " + str_git_url
         # git.Git("./source/" + str_name).clone(str_git_url)
         Repo.clone_from(str_git_url, "./source/" + str_name ,branch=str_branch)
 
     
-def configure(str_name , str_config = ""):
-    my_into_build_dir( str_name )
+def configure(str_name ,dict_config, str_config = ""):
+    my_into_build_dir( str_name ,dict_config['arch'] )
     # e = os.path.isfile("CMakeCache.txt") 
     # if(e):
         # print str_name + "configure is exist"
     # else:
-    my_exec( "cmake ../../source/" + str_name + " -DCMAKE_INSTALL_PREFIX='../../install' " + str_config )
+    my_exec( "cmake ../../../source/" + str_name + 
+    " -DCMAKE_INSTALL_PREFIX='../../../install/" + dict_config['arch'] + "' " +
+    dict_config['cmake_cfg'] + str_config )
     my_out_build_dir( str_name )
     
     
-def build(str_name):
-    my_into_build_dir( str_name )
+def build(str_name,dict_config):
+    my_into_build_dir( str_name ,dict_config['arch'])
     os.system('msbuild ALL_BUILD.vcxproj /p:Configuration=Release')
     my_out_build_dir( str_name )
     pass
     
-def install(str_name):
-    my_into_build_dir( str_name )
+def install(str_name,dict_config):
+    my_into_build_dir( str_name ,dict_config['arch'])
     os.system('msbuild INSTALL.vcxproj /p:Configuration=Release')
     my_out_build_dir( str_name )
     pass

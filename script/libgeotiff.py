@@ -12,7 +12,10 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
     # download_source(str_name,"https://github.com/smanders/libgeotiff.git")
     download_source(str_name,"https://github.com/shelltdf/libgeotiff.git")
-    configure(str_name," -DBUILD_SHARED_LIBS=1 ")
-    build(str_name)
-    install(str_name)
+    if(b_only_download):
+        return
+        
+    configure(str_name,dict_config," -DBUILD_SHARED_LIBS=1 ")
+    build(str_name,dict_config)
+    install(str_name,dict_config)
     

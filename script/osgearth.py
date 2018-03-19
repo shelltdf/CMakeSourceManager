@@ -11,12 +11,14 @@ def getDependency( str_name ,getDependency):
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
     download_source(str_name,"https://github.com/gwaldron/osgearth.git")
+    if(b_only_download):
+        return
     
-    STR_CFG = " -DGDAL_INCLUDE_DIR='../../install/include/gdal'"
-    STR_CFG += " -DGDAL_LIBRARY='../../install/lib/x86/gdal111.lib'"
+    STR_CFG = " -DGDAL_INCLUDE_DIR='../../../install/" + dict_config['arch'] + "/include/gdal'"
+    STR_CFG += " -DGDAL_LIBRARY='../../../install/" + dict_config['arch'] + "/lib/gdal111.lib'"
     
-    configure(str_name,STR_CFG)
-    build(str_name)
-    install(str_name)
+    configure(str_name,dict_config,STR_CFG)
+    build(str_name,dict_config)
+    install(str_name,dict_config)
     
     
