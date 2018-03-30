@@ -11,14 +11,38 @@ def my_exec( str_cmd ):
     else:
         ps = subprocess.Popen(str_cmd)
         ps.wait()
+
+def my_build_and_install_dir(dict_config):
+    dir_name = ""
+    dir_name += dict_config['arch']
+    
+    if(dict_config['static']==True):
+        dir_name += '_static'
+    if(dict_config['dynamic']==True):
+        dir_name += '_dynamic'
         
-def my_into_build_dir( str_name , str_arch ):
+    if(dict_config['arch'][:2]=="vs"):
+        return dir_name
+        
+    if(dict_config['debug']==True):
+        dir_name += '_debug'
+    if(dict_config['release']==True):
+        dir_name += '_release'
+    return dir_name
+    
+        
+def my_into_build_dir( str_name , dict_config ):
+
     if(os.path.isdir("build")==False):
         os.system( "mkdir build" )
     os.chdir( "build" )
-    if(os.path.isdir(str_arch)==False):
-        os.system( "mkdir " + str_arch )
-    os.chdir( str_arch )
+    
+    dir_name = my_build_and_install_dir(dict_config)
+        
+    if(os.path.isdir(dir_name)==False):
+        os.system( "mkdir " + dir_name)
+    os.chdir( dir_name )
+    
     if(os.path.isdir(str_name)==False):
         os.system( "mkdir " + str_name )
     os.chdir( str_name )
@@ -61,26 +85,55 @@ def download_source(str_name , str_git_url , str_branch='master'):
 
     
 def configure(str_name ,dict_config, str_config = ""):
-    my_into_build_dir( str_name ,dict_config['arch'] )
+    my_into_build_dir( str_name ,dict_config )
+    dir_name = my_build_and_install_dir(dict_config)
+    
+    BUILD_TYPE = ""
+    BUILD_STATIC_LIB = ""
+    if(dict_config['static']==True):
+        BUILD_STATIC_LIB = " -DBUILD_STATIC_LIB=1"
+    if(dict_config['dynamic']==True):
+        BUILD_STATIC_LIB = " -DBUILD_STATIC_LIB=0"
+        
+    if(dict_config['arch'][:2]!="vs"):
+        if(dict_config['debug']==True):
+            BUILD_TYPE = ' -DBUILD_TYPE=debug'
+        if(dict_config['release']==True):
+            BUILD_TYPE = ' -DBUILD_TYPE=release'
+        
+    
     # e = os.path.isfile("CMakeCache.txt") 
     # if(e):
         # print str_name + "configure is exist"
     # else:
     my_exec( "cmake ../../../source/" + str_name + 
-    " -DCMAKE_INSTALL_PREFIX='../../../install/" + dict_config['arch'] + "' " +
-    dict_config['cmake_cfg'] + str_config )
+    " -DCMAKE_INSTALL_PREFIX='../../../install/" + dir_name + "' " +
+    dict_config['cmake_cfg'] + BUILD_TYPE + BUILD_STATIC_LIB + str_config )
+    
     my_out_build_dir( str_name )
     
     
 def build(str_name,dict_config):
-    my_into_build_dir( str_name ,dict_config['arch'])
-    os.system('msbuild ALL_BUILD.vcxproj /p:Configuration=Release')
+    my_into_build_dir( str_name ,dict_config)
+    if(dict_config['arch'][:2]=="vs"):
+        if(dict_config['debug']==True):
+            os.system('msbuild ALL_BUILD.vcxproj /p:Configuration=Debug')
+        if(dict_config['release']==True):
+            os.system('msbuild ALL_BUILD.vcxproj /p:Configuration=Release')
+    else:
+        os.system('make')
     my_out_build_dir( str_name )
     pass
     
 def install(str_name,dict_config):
-    my_into_build_dir( str_name ,dict_config['arch'])
-    os.system('msbuild INSTALL.vcxproj /p:Configuration=Release')
+    my_into_build_dir( str_name ,dict_config)
+    if(dict_config['arch'][:2]=="vs"):
+        if(dict_config['debug']==True):
+            os.system('msbuild INSTALL.vcxproj /p:Configuration=Debug')
+        if(dict_config['release']==True):
+            os.system('msbuild INSTALL.vcxproj /p:Configuration=Release')
+    else:
+        os.system('make install')
     my_out_build_dir( str_name )
     pass
     

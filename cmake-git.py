@@ -91,10 +91,52 @@ def main():
     dict_config['static'] = ARG_STATIC
     dict_config['arch'] = ARG_ARCH
     
+    if(dict_config['debug']):
+        dict_config['release'] = False
+    if(dict_config['static']):
+        dict_config['dynamic'] = False
+        
+    
+    if(ARG_ARCH == "vs2005-32"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 8 2005" '
+    if(ARG_ARCH == "vs2005-64"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 8 2005 Win64" '
+        
+    if(ARG_ARCH == "vs2008-32"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 9 2008" '
+    if(ARG_ARCH == "vs2008-64"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 9 2008 Win64" '
+    
+    if(ARG_ARCH == "vs2010-32"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 10 2010" '
+    if(ARG_ARCH == "vs2010-64"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 10 2010 Win64" '
+    
+    if(ARG_ARCH == "vs2012-32"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 11 2012" '
+    if(ARG_ARCH == "vs2012-64"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 11 2012 Win64" '
+    
+    if(ARG_ARCH == "vs2013-32"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 12 2013" '
+    if(ARG_ARCH == "vs2013-64"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 12 2013 Win64" '
+    
+    if(ARG_ARCH == "vs2015-32"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 14 2015" '
+    if(ARG_ARCH == "vs2015-64"):
+        dict_config['cmake_cfg'] = ' -G "Visual Studio 14 2015 Win64" '
+        
     if(ARG_ARCH == "vs2017-32"):
         dict_config['cmake_cfg'] = ' -G "Visual Studio 15 2017" '
     if(ARG_ARCH == "vs2017-64"):
         dict_config['cmake_cfg'] = ' -G "Visual Studio 15 2017 Win64" '
+
+    if(ARG_ARCH == "mingw-32"):
+        dict_config['cmake_cfg'] = ' -G "MSYS Makefiles" '
+    if(ARG_ARCH == "mingw-64"):
+        dict_config['cmake_cfg'] = ' -G "MSYS Makefiles" '
+
         
     print dict_config
     

@@ -7,10 +7,10 @@
   pip install GitPython
 ```
 
-##编译开关[尚未支持]
+##编译开关
 
 * dynamic / static 
-* release / debug / release_and_debug
+* release / debug 
 
 ##编译架构[尚未支持]
 
