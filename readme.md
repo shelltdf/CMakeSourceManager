@@ -2,10 +2,7 @@
 
 * CMake
 * python2
-* GitPython
-```
-  pip install GitPython
-```
+
 
 ##编译开关
 

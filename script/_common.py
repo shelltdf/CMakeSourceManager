@@ -1,6 +1,6 @@
 
 # import git
-from git import Repo
+# from git import Repo
 import os
 
 def my_exec( str_cmd ):
@@ -53,6 +53,22 @@ def my_out_build_dir( str_name ):
     os.chdir( ".." )
     os.chdir( ".." )
     
+    
+def my_into_source_dir( str_name ):
+
+    if(os.path.isdir("source")==False):
+        os.system( "mkdir source" )
+    os.chdir( "source" )
+    
+    if(os.path.isdir(str_name)==False):
+        os.system( "mkdir " + str_name)
+    os.chdir( str_name )
+    
+def my_out_source_dir():
+    os.chdir( ".." )
+    os.chdir( ".." )
+    
+    
 def addDependency( str_name , list_name ,getDependency ):
 
     list_sn = []        
@@ -78,11 +94,20 @@ def download_source(str_name , str_git_url , str_branch='master'):
     e = os.path.isdir("./source/" + str_name + "/.git") 
     if(e):
         print str_name + " git is exist"
+        my_exec( "git fetch" )
+        
     else:
         print "clone git : " + str_git_url
         # git.Git("./source/" + str_name).clone(str_git_url)
-        Repo.clone_from(str_git_url, "./source/" + str_name ,branch=str_branch)
-
+        # Repo.clone_from(str_git_url, "./source/" + str_name ,branch=str_branch)
+        
+        # my_into_source_dir( str_name )
+        
+        cmd = "git clone --branch " + str_branch + " " + str_git_url +" ./source/"+str_name 
+        my_exec( cmd )
+        
+        # my_out_source_dir()
+        
     
 def configure(str_name ,dict_config, str_config = ""):
     my_into_build_dir( str_name ,dict_config )
