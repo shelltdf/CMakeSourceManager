@@ -16,8 +16,10 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     if(b_only_download):
         return
     
-    STR_CFG = " -DGDAL_INCLUDE_DIR='../../../install/" + dict_config['arch'] + "/include/gdal'"
-    STR_CFG += " -DGDAL_LIBRARY='../../../install/" + dict_config['arch'] + "/lib/gdal111.lib'"
+    dir_name = my_build_and_install_dir(dict_config)
+    
+    STR_CFG = " -DGDAL_INCLUDE_DIR='../../../install/" + dir_name + "/include/gdal'"
+    STR_CFG += " -DGDAL_LIBRARY='../../../install/" + dir_name + "/lib/gdal111.lib'"
     
     configure(str_name,dict_config,STR_CFG)
     build(str_name,dict_config)
