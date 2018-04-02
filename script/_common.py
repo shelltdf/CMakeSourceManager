@@ -2,6 +2,8 @@
 # import git
 # from git import Repo
 import os
+import glob
+import shutil
 
 def my_exec( str_cmd ):
     print "exec - "  + str_cmd
@@ -163,3 +165,40 @@ def install(str_name,dict_config):
     my_out_build_dir( str_name )
     pass
     
+    
+    
+def copyfiles(str_source,str_dist,PATTERN):
+
+    # sourcePath = r'E:\some\path'
+    # destPath = r'E:\some\other\path'
+    for root, dirs, files in os.walk(str_source):
+
+        #figure out where we're going
+        dest = str_dist + root.replace(str_source, '')
+
+        #if we're in a directory that doesn't exist in the destination folder
+        #then create a new folder
+        if not os.path.isdir(dest):
+            os.mkdir(dest)
+            print 'Directory created at: ' + dest
+
+        #loop through all files in the directory
+        for f in files:
+            if glob.fnmatch.fnmatch(f, PATTERN):
+                print f
+                
+                #compute current (old) & new file locations
+                oldLoc = root + '\\' + f
+                newLoc = dest + '\\' + f
+
+                if not os.path.isfile(newLoc):
+                    try:
+                        shutil.copy2(oldLoc, newLoc)
+                        print 'File ' + f + ' copied.'
+                    except IOError:
+                        print 'file "' + f + '" already exists'
+                        
+                        
+                        
+                    
+                    

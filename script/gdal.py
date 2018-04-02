@@ -9,6 +9,7 @@ def getDependency( str_name ,getDependency):
     list_name = addDependency("libiconv" , list_name,getDependency)
     list_name = addDependency("curl" , list_name,getDependency)
     list_name = addDependency("libjpeg" , list_name,getDependency)
+    list_name = addDependency("proj4" , list_name,getDependency)
 
     return list_name + [str_name]
     
