@@ -15,7 +15,7 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     if(b_only_download):
         return
         
-    configure(str_name,dict_config," -DBUILD_SHARED_LIBS=1 ")
+    configure(str_name,dict_config)
     build(str_name,dict_config)
     install(str_name,dict_config)
     

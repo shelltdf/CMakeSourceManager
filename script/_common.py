@@ -106,6 +106,7 @@ def download_source(str_name , str_git_url , str_branch='master'):
         cmd = "git clone --branch " + str_branch + " " + str_git_url +" ./source/"+str_name 
         my_exec( cmd )
         
+        
         # my_out_source_dir()
         
     
@@ -116,9 +117,9 @@ def configure(str_name ,dict_config, str_config = ""):
     BUILD_TYPE = ""
     BUILD_STATIC_LIB = ""
     if(dict_config['static']==True):
-        BUILD_STATIC_LIB = " -DBUILD_STATIC_LIB=1"
+        BUILD_STATIC_LIB = " -DBUILD_SHARED_LIBS=0"
     if(dict_config['dynamic']==True):
-        BUILD_STATIC_LIB = " -DBUILD_STATIC_LIB=0"
+        BUILD_STATIC_LIB = " -DBUILD_SHARED_LIBS=1"
         
     if(dict_config['arch'][:2]!="vs"):
         if(dict_config['debug']==True):

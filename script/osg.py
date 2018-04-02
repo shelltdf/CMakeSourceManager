@@ -6,13 +6,15 @@ def getDependency( str_name ,getDependency):
     
     list_name = addDependency("gdal" , list_name,getDependency)
     list_name = addDependency("libpng" , list_name,getDependency)
+    list_name = addDependency("freetype" , list_name,getDependency)
 
     return list_name + [str_name]
     
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
-    download_source(str_name,"https://github.com/openscenegraph/OpenSceneGraph.git")
+    # download_source(str_name,"https://github.com/openscenegraph/OpenSceneGraph.git")
+    download_source(str_name,"https://github.com/shelltdf/OpenSceneGraph.git","OpenSceneGraph-3.6")
     if(b_only_download):
         return
     

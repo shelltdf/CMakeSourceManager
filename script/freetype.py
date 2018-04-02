@@ -4,13 +4,16 @@ from _common import *
 def getDependency( str_name ,getDependency):
     list_name = []
     
+    list_name = addDependency("libpng" , list_name,getDependency)
+    
     return list_name + [str_name]
     
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     # print(str_name)
     
-    download_source(str_name,"https://github.com/winlibs/freetype.git")
+    # download_source(str_name,"https://github.com/winlibs/freetype.git")
+    download_source(str_name,"https://github.com/shelltdf/freetype.git")
     if(b_only_download):
         return
         
