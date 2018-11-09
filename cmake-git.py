@@ -8,7 +8,7 @@ def findScript(str_name):
     #find script
     e = os.path.isfile("./script/" + str_name + ".py") 
     if(e == False):
-        print str_name + "is not exist"
+        print (str_name + "is not exist")
         return False
     
     #import script
@@ -78,8 +78,8 @@ def main():
     elif len(ARG_CMD)>0 and len(ARG_NAME)>0 and len(ARG_ARCH)>0:
         pass
     else:
-        print "cmake-git.py source zlib "
-        print "cmake-git.py install zlib -arch vs2017-32 [-release] [-debug] [-dynamic] [-static]"
+        print ("cmake-git.py source zlib ")
+        print ("cmake-git.py install zlib -arch vs2017-32 [-release] [-debug] [-dynamic] [-static]")
         return
     
     
@@ -138,12 +138,12 @@ def main():
         dict_config['cmake_cfg'] = ' -G "MSYS Makefiles" '
 
         
-    print dict_config
+    print (dict_config)
     
     
     # dependency
     list_name = getDependency( ARG_NAME )
-    print "Dependency -> " + str(list_name)
+    print ("Dependency -> " + str(list_name))
     
     # download and build install
     for x in list_name:

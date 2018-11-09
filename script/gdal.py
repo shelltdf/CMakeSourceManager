@@ -48,6 +48,17 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     STR_CFG += " -DOGR_ENABLE_VRT=1 "
     STR_CFG += " -DOGR_ENABLE_WFS=1 "
     
+    
+    dir_name = my_build_and_install_dir(dict_config)
+    
+    if(dict_config['debug']):
+        STR_CFG += " -DCURL_LIBRARY='../../../install/" + dir_name + "/lib/libcurl-d_imp.lib'"
+        STR_CFG += " -Dgeotiff_LIBRARY='../../../install/" + dir_name + "/lib/geotiff_d.lib'"
+    else:
+        STR_CFG += " -DCURL_LIBRARY='../../../install/" + dir_name + "/lib/libcurl_imp.lib'"
+        STR_CFG += " -Dgeotiff_LIBRARY='../../../install/" + dir_name + "/lib/geotiff.lib'"
+
+        
     configure(str_name,dict_config,STR_CFG)
     build(str_name,dict_config)
     install(str_name,dict_config)

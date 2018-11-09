@@ -1,7 +1,7 @@
 ## 依赖环境
 
 * CMake
-* python2
+* python2 (当前版本还不支持python3)
 
 
 ##编译开关
@@ -17,14 +17,15 @@
   
 ##编译说明
 
+### Visual Studio 2015
 ### Visual Studio 2017
-1. 启动控制台
+1. 启动vs控制台
 
 2. 输入命令（假设编译zlib，使用vs2017编译32bit版本）
 
 ```
-cmake-git.py source zlib
-cmake-git.py install zlib -arch vs2017-32 [-release] [-debug] [-dynamic] [-static]
+python cmake-git.py source zlib
+python cmake-git.py install zlib -arch vs2017-32 [-release] [-debug] [-dynamic] [-static]
 ```
 
 3. 等待结束
