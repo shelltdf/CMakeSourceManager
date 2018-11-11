@@ -1,5 +1,5 @@
 
-from _common import *
+from ._common import *
 
 def getDependency( str_name ,getDependency):
     list_name = []
@@ -14,6 +14,7 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     # download_source(str_name,"https://gitlab.com/libtiff/libtiff.git")
     # download_source(str_name,"https://github.com/LuaDist/libtiff.git")
     download_source(str_name,"https://github.com/shelltdf/libtiff.git")
+    # download_source(str_name,"https://github.com/shelltdf/libtiff.git","branch-3.9") #for TIFFClientOpen()
     if(b_only_download):
         return
         

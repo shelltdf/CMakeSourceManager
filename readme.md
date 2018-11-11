@@ -9,7 +9,7 @@
 ## 依赖环境
 
 * CMake
-* python2 (当前版本还不支持python3)
+* python2 / python3 同时支持
 
 ##编译说明
 
@@ -46,3 +46,70 @@ vs2010-64
 | vs2015-64 | 支持   | 支持 |  |             |
 
 
+##依赖关系
+
+``` mermaid
+graph LR
+	anttweakbar
+	boost
+    curl --> zlib
+    draco
+    eigen
+    flann
+    freeglut
+    freetype --> libpng
+    gdal --> libpng
+    gdal --> libgeotiff
+    gdal --> libiconv
+    gdal --> curl
+    gdal --> libjpeg
+    gdal --> proj4
+    geos
+    glew
+    ifcplusplus --> osg
+    ifcplusplus --> boost
+    leveldb
+    libbzip2
+    libgeotiff --> libtiff
+    libiconv
+    libjpeg
+    liblas --> boost
+    libpng --> zlib
+    libtiff --> zlib
+    libtiff --> libjpeg
+    ogre3d
+    ork --> stb
+    ork --> tinyxml
+    ork --> glew
+    ork --> freeglut
+    ork --> pthread
+    osg --> gdal
+    osg --> libpng
+    osg --> freetype
+    osgearth --> osg
+    osgearth --> geos
+    osgeffect --> osg
+    osgentity --> osg
+    osgsplit --> osg
+    osgsplit --> boost
+    osgsplit --> ifcplusplus
+    osgsplit --> liblas
+    osgsplit --> osgeffect
+    osgsplit --> osgentity
+    paraview
+    proj4
+    proland --> ork
+    proland --> anttweakbar
+    proland --> libtiff
+    pthread
+    qhull
+    stamen
+    stb
+    tinyxml
+    zlib
+    _FBX_SDK
+    _Qt
+    _SilverLining
+    _Triton
+    
+```

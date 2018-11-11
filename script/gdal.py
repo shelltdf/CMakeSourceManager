@@ -1,5 +1,5 @@
 
-from _common import *
+from ._common import *
 
 def getDependency( str_name ,getDependency):
     list_name = []
@@ -10,6 +10,8 @@ def getDependency( str_name ,getDependency):
     list_name = addDependency("curl" , list_name,getDependency)
     list_name = addDependency("libjpeg" , list_name,getDependency)
     list_name = addDependency("proj4" , list_name,getDependency)
+    list_name = addDependency("geos" , list_name,getDependency)
+    list_name = addDependency("expat" , list_name,getDependency)
 
     return list_name + [str_name]
     
@@ -48,16 +50,24 @@ def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     STR_CFG += " -DOGR_ENABLE_VRT=1 "
     STR_CFG += " -DOGR_ENABLE_WFS=1 "
     
-    
     dir_name = my_build_and_install_dir(dict_config)
     
-    if(dict_config['debug']):
+    # STR_CFG += " -DCURL_INCLUDE_DIR='../../../install/" + dir_name + "/include/'"
+    
+    if(dict_config['release']):
+        pass
+        # STR_CFG += " -DCURL_LIBRARY='../../../install/" + dir_name + "/lib/libcurl_imp.lib'"
+        # STR_CFG += " -Dgeotiff_LIBRARY='../../../install/" + dir_name + "/lib/geotiff.lib'"
+        STR_CFG += " -DGEOS_LIBRARY='../../../install/" + dir_name + "/lib/geos_c.lib'"
+        STR_CFG += " -DPROJ_LIBRARY='../../../install/" + dir_name + "/local/lib/proj_5_0.lib'"
+        STR_CFG += " -DPROJ_INCLUDE_DIR='../../../install/" + dir_name + "/local/include/'"
+    else:
         STR_CFG += " -DCURL_LIBRARY='../../../install/" + dir_name + "/lib/libcurl-d_imp.lib'"
         STR_CFG += " -Dgeotiff_LIBRARY='../../../install/" + dir_name + "/lib/geotiff_d.lib'"
-    else:
-        STR_CFG += " -DCURL_LIBRARY='../../../install/" + dir_name + "/lib/libcurl_imp.lib'"
-        STR_CFG += " -Dgeotiff_LIBRARY='../../../install/" + dir_name + "/lib/geotiff.lib'"
-
+        STR_CFG += " -DGEOS_LIBRARY='../../../install/" + dir_name + "/lib/geos_c.lib'"
+        STR_CFG += " -DEXPAT_LIBRARY='../../../install/" + dir_name + "/lib/expatd.lib'"
+        STR_CFG += " -DPROJ_LIBRARY='../../../install/" + dir_name + "/local/lib/proj_5_0_d.lib'"
+        STR_CFG += " -DPROJ_INCLUDE_DIR='../../../install/" + dir_name + "/local/include/'"
         
     configure(str_name,dict_config,STR_CFG)
     build(str_name,dict_config)

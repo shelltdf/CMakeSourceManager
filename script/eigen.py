@@ -1,5 +1,5 @@
 
-from _common import *
+from ._common import *
 
 def getDependency( str_name ,getDependency):
     list_name = []
