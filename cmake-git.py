@@ -24,11 +24,11 @@ def getDependency( str_name ):
     return list_name;
 
 
-def getLibrary( str_name , b_only_download ,dict_config ):
+def getLibrary( str_name , b_download ,dict_config ):
     val = findScript(str_name)
     
     #do script
-    val.SBI( str_name , b_only_download ,dict_config, getLibrary )
+    val.SBI( str_name , b_download ,dict_config, getLibrary )
     
 
 def main():

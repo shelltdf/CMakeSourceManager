@@ -12,16 +12,17 @@ def getDependency( str_name ,getDependency):
     return list_name + [str_name]
     
     
-def SBI( str_name , b_only_download ,dict_config, getLibrary ):
+def SBI( str_name , b_download ,dict_config, getLibrary ):
     # print(str_name)
     
-    # download_source(str_name,"https://github.com/boost-cmake/boost.git")
-    # download_source(str_name,"https://github.com/microcai/boost.git")
-    # download_source(str_name,"https://github.com/Orphis/boost-cmake.git")
-    # download_source(str_name,"https://github.com/boostorg/boost.git",'master','boost-1.60.0')
-    # download_source(str_name,"https://github.com/boostorg/boost.git",'master','boost-1.60.0')
-    download_source(str_name,"https://github.com/boostorg/boost.git",'master','boost-1.67.0')
-    if(b_only_download):
+    if(b_download):
+        # download_source(str_name,"https://github.com/boost-cmake/boost.git")
+        # download_source(str_name,"https://github.com/microcai/boost.git")
+        # download_source(str_name,"https://github.com/Orphis/boost-cmake.git")
+        # download_source(str_name,"https://github.com/boostorg/boost.git",'master','boost-1.60.0')
+        # download_source(str_name,"https://github.com/boostorg/boost.git",'master','boost-1.60.0')
+        download_source(str_name,"https://github.com/boostorg/boost.git",'master','boost-1.67.0')
+        
         return
         
     BOOST_ARCH = 'x86' # -march setting
