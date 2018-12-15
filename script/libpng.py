@@ -11,8 +11,9 @@ def getDependency( str_name ,getDependency):
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
-    download_source(str_name,"https://github.com/glennrp/libpng.git")
     if(b_only_download):
+        download_source(str_name,"https://github.com/glennrp/libpng.git")
+    
         return
         
     configure(str_name,dict_config)

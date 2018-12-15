@@ -9,11 +9,12 @@ def getDependency( str_name ,getDependency):
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     
-    # download_source(str_name,"https://github.com/hunter-packages/jpeg.git")
-    # download_source(str_name,"https://github.com/LuaDist/libjpeg.git")
-    # download_source(str_name,"https://github.com/stohrendorf/libjpeg-cmake.git")
-    download_source(str_name,"https://github.com/shelltdf/libjpeg-cmake.git")
     if(b_only_download):
+        # download_source(str_name,"https://github.com/hunter-packages/jpeg.git")
+        # download_source(str_name,"https://github.com/LuaDist/libjpeg.git")
+        # download_source(str_name,"https://github.com/stohrendorf/libjpeg-cmake.git")
+        download_source(str_name,"https://github.com/shelltdf/libjpeg-cmake.git")
+        
         return
         
     configure(str_name,dict_config)

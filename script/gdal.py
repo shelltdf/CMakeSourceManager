@@ -17,9 +17,10 @@ def getDependency( str_name ,getDependency):
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
-    # download_source(str_name,"https://github.com/aashish24/gdal-svn.git","cmake4gdal")
-    download_source(str_name,"https://github.com/shelltdf/gdal-svn.git","cmake4gdal")
     if(b_only_download):
+        # download_source(str_name,"https://github.com/aashish24/gdal-svn.git","cmake4gdal")
+        download_source(str_name,"https://github.com/shelltdf/gdal-svn.git","cmake4gdal")
+        
         return
         
     STR_CFG = " -DGDAL_USE_OPENCL=0 "

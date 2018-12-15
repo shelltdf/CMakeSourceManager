@@ -9,9 +9,10 @@ def getDependency( str_name ,getDependency):
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     
-    # download_source(str_name,"https://github.com/LuaDist/libiconv.git")
-    download_source(str_name,"https://github.com/vovythevov/libiconv-cmake.git")
     if(b_only_download):
+        # download_source(str_name,"https://github.com/LuaDist/libiconv.git")
+        download_source(str_name,"https://github.com/vovythevov/libiconv-cmake.git")
+        
         return
         
     configure(str_name,dict_config)

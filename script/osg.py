@@ -14,9 +14,10 @@ def getDependency( str_name ,getDependency):
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
-    # download_source(str_name,"https://github.com/openscenegraph/OpenSceneGraph.git")
-    download_source(str_name,"https://github.com/shelltdf/OpenSceneGraph.git","OpenSceneGraph-3.4")
     if(b_only_download):
+        # download_source(str_name,"https://github.com/openscenegraph/OpenSceneGraph.git")
+        download_source(str_name,"https://github.com/shelltdf/OpenSceneGraph.git","OpenSceneGraph-3.4")
+        
         return
     
     dir_name = my_build_and_install_dir(dict_config)

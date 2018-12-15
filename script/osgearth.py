@@ -11,9 +11,10 @@ def getDependency( str_name ,getDependency):
     
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
 
-    # download_source(str_name,"https://github.com/gwaldron/osgearth.git")
-    download_source(str_name,"https://github.com/shelltdf/osgearth.git","2.8")
     if(b_only_download):
+        # download_source(str_name,"https://github.com/gwaldron/osgearth.git")
+        download_source(str_name,"https://github.com/shelltdf/osgearth.git","2.8")
+        
         return
     
     dir_name = my_build_and_install_dir(dict_config)

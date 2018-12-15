@@ -10,9 +10,10 @@ def getDependency( str_name ,getDependency):
 def SBI( str_name , b_only_download ,dict_config, getLibrary ):
     # print(str_name)
     
-    # download_source(str_name,"https://github.com/OSGeo/proj.4.git")
-    download_source(str_name,"https://github.com/shelltdf/proj.4.git")
     if(b_only_download):
+        # download_source(str_name,"https://github.com/OSGeo/proj.4.git")
+        download_source(str_name,"https://github.com/shelltdf/proj.4.git")
+        
         return
         
     # STR_CGG = ''
